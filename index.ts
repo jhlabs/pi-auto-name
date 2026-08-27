@@ -188,10 +188,10 @@ export default function autoNameExtension(pi: ExtensionAPI) {
 			return;
 		}
 
-		const sessionFile = ctx.sessionManager.getSessionFile();
-		const leafId = ctx.sessionManager.getLeafId();
 		state.lastAttemptedUserCount = userMessageCount;
 		persistState();
+		const sessionFile = ctx.sessionManager.getSessionFile();
+		const leafId = ctx.sessionManager.getLeafId();
 		const requestId = ++nextRequestId;
 		const controller = new AbortController();
 		let cancelRequest = () => {};

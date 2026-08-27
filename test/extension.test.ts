@@ -15,8 +15,13 @@ function createHarness(options: HarnessOptions = {}) {
 	const branch: any[] = [];
 	const names: string[] = [];
 	let sessionName: string | undefined;
-	let leafId: string | null = "leaf-1";
+	let leafSequence = 0;
+	let leafId: string | null = "leaf-0";
 	let completeCalls = 0;
+	const advanceLeaf = (kind: string) => {
+		leafSequence += 1;
+		leafId = `${kind}-${leafSequence}`;
+	};
 	const model = { provider: "test", id: "title-model" };
 
 	const pi = {
@@ -33,6 +38,7 @@ function createHarness(options: HarnessOptions = {}) {
 		},
 		appendEntry(customType: string, data: unknown) {
 			branch.push({ type: "custom", customType, data });
+			advanceLeaf("custom");
 		},
 		getSessionName() {
 			return sessionName;
@@ -40,6 +46,7 @@ function createHarness(options: HarnessOptions = {}) {
 		setSessionName(name: string) {
 			sessionName = name;
 			names.push(name);
+			advanceLeaf("session-info");
 		},
 		registerCommand(name: string, config: { handler: Handler }) {
 			commands.set(name, config.handler);
