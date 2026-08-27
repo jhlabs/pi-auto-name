@@ -1,0 +1,60 @@
+{
+  "name": "pi-auto-name",
+  "version": "0.1.0",
+  "description": "Automatically creates and refreshes readable Pi session names.",
+  "type": "module",
+  "author": {
+    "name": "Johannes Herrmann",
+    "email": "johannes@jhlabs.io",
+    "url": "https://www.johannes.co"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhlabs/pi-auto-name.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhlabs/pi-auto-name/issues"
+  },
+  "homepage": "https://github.com/jhlabs/pi-auto-name#readme",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "extension",
+    "session-name"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "files": [
+    "index.ts",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test",
+    "prepublishOnly": "npm run check"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.84.3",
+    "@earendil-works/pi-coding-agent": "^0.84.3",
+    "@types/node": "^22.19.0",
+    "typescript": "^5.9.3"
+  }
+}
