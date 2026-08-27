@@ -16,6 +16,12 @@ Refreshes are based on conversation activity rather than wall-clock time, so idl
 ## Install
 
 ```bash
+pi install npm:@jhlabs/pi-auto-name
+```
+
+Alternatively, install the latest source directly from GitHub:
+
+```bash
 pi install git:github.com/jhlabs/pi-auto-name
 ```
 

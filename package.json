@@ -1,5 +1,5 @@
 {
-  "name": "pi-auto-name",
+  "name": "@jhlabs/pi-auto-name",
   "version": "0.1.0",
   "description": "Automatically creates and refreshes readable Pi session names.",
   "type": "module",
