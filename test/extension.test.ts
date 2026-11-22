@@ -137,6 +137,27 @@ test("names immediately from the first prompt, then refines from history", async
 	assert.equal(harness.completeCalls, 1);
 });
 
+test("naming requests omit reasoning effort so providers can use their defaults", async () => {
+	let requestOptions: Record<string, unknown> | undefined;
+	const harness = createHarness({
+		complete: async (_model, _context, options) => {
+			requestOptions = options;
+			return {
+				stopReason: "stop",
+				content: [{ type: "text", text: "Provider Default Title" }],
+			};
+		},
+	});
+	await harness.fire("session_start");
+	await harness.fire("before_agent_start", { prompt: "Please debug bookmark imports" });
+	addSettledConversation(harness.branch);
+	await harness.fire("agent_settled");
+
+	assert.ok(requestOptions);
+	assert.equal(Object.hasOwn(requestOptions, "reasoningEffort"), false);
+	assert.equal(requestOptions.maxTokens, 96);
+});
+
 test("manual session names disable future automatic updates", async () => {
 	const harness = createHarness();
 	await harness.fire("session_start");

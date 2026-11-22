@@ -190,6 +190,7 @@ export default function autoNameExtension(pi: ExtensionAPI) {
 
 		state.lastAttemptedUserCount = userMessageCount;
 		persistState();
+		// Persisting state appends a session entry, so snapshot the leaf afterward.
 		const sessionFile = ctx.sessionManager.getSessionFile();
 		const leafId = ctx.sessionManager.getLeafId();
 		const requestId = ++nextRequestId;
@@ -232,7 +233,6 @@ export default function autoNameExtension(pi: ExtensionAPI) {
 				},
 				{
 					maxTokens: 96,
-					reasoningEffort: "minimal",
 					cacheRetention: "none",
 					sessionId: uuidv7(),
 					signal: controller.signal,

@@ -53,7 +53,7 @@ The active Pi model is used by default. Change the refresh cadence at startup wi
 pi --auto-name-every 5
 ```
 
-Naming requests may consume tokens or incur provider costs. Each request uses at most 12,000 characters of bounded conversation history and asks for no more than 96 output tokens.
+Naming requests may consume tokens or incur provider costs. Each request uses at most 12,000 characters of bounded conversation history and asks for no more than 96 output tokens. Requests do not specify reasoning effort, allowing the provider to use its default without requiring support for a particular reasoning level.
 
 ## Development
 
